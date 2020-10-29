@@ -16,9 +16,9 @@ class DemoApplicationTests {
 	@Test
 	void addPerson() {
 		Person ionel = new Person();
-		ionel.setFirstName("Ionel");
-		ionel.setLastName("Popescu");
-		ionel.setAge(25L);
+		ionel.setFirstName("Gigi");
+		ionel.setLastName("Contra");
+		ionel.setAge(42L);
 		ionel.setGender("male");
 
 		personRepository.save(ionel);
@@ -29,9 +29,9 @@ class DemoApplicationTests {
 	@Test
 	void addAddress() {
 		Address address = new Address();
-		address.setStreetName("Jiul");
-		address.setStreetNumber(6L);
-		address.setFk_person(1L);
+		address.setStreetName("Rozei");
+		address.setStreetNumber(21L);
+		address.setFk_person(5L);
 
 		addressRepository.save(address);
 	}
