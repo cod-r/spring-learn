@@ -1,38 +1,32 @@
 package com.example.demo;
 
 import com.example.demo.entity.Address;
-import com.example.demo.entity.Person;
 import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import java.util.Optional;
 
 @SpringBootTest
 class DemoApplicationTests {
 
-	@Autowired PersonRepository personRepository;
+    @Autowired
+    PersonRepository personRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
-	@Test
-	void addPerson() {
-		Person ionel = new Person();
-		ionel.setFirstName("Gigi");
-		ionel.setLastName("Contra");
-		ionel.setAge(42L);
-		ionel.setGender("male");
+    @Test
+    void deleteAddress() {
+        Optional<Address> streetName = addressRepository.findByStreetName("Rozei");
 
-		personRepository.save(ionel);
-	}
+        if (streetName.isPresent()) {
+            addressRepository.delete(streetName.get());
+            System.out.println("The row containing the street name was deleted from Address");
+        } else {
+            System.out.println("Could not find the address");
+        }
 
-	@Autowired AddressRepository addressRepository;
+    }
 
-	@Test
-	void addAddress() {
-		Address address = new Address();
-		address.setStreetName("Rozei");
-		address.setStreetNumber(21L);
-		address.setFk_person(5L);
-
-		addressRepository.save(address);
-	}
 }
